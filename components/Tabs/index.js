@@ -7,3 +7,22 @@
 //
 //  Each tab should look like this:
 //    <div class="tab">topic here</div>
+
+
+ axios.get('https://lambda-times-backend.herokuapp.com/topics')
+
+.then(function (response) {
+    console.log(response.data);
+    console.log(response.status);
+    console.log(response.statusText);
+    console.log(response.headers);
+    console.log(response.config);
+
+
+    
+  })
+
+  .catch(function (error) {
+    console.log(error);
+  });
+
