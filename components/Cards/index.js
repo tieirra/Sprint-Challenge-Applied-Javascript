@@ -20,7 +20,6 @@
 //
 // Use your function to create a card for each of the articles and add the card to the DOM.
 
-axios.get('https://lambda-times-backend.herokuapp.com/articles');
 
 // <div class="card">
 //   <div class="headline">{Headline of article}</div>
@@ -35,6 +34,9 @@ axios.get('https://lambda-times-backend.herokuapp.com/articles');
 
 function cardMaker(attributes){
 
+    const { authorPhoto , authorName} = attributes
+
+
     const card = document.createElement('div')
     const headline = document.createElement('div')
     const author= document.createElement('div')
@@ -48,8 +50,40 @@ function cardMaker(attributes){
    author.classList.add('author')
    imgContainer.classList.add('img-container')
   
-img.src = url-of-authors-image
-name.textContent= 'By ${}'
-   
+img.src = `${authorPhoto}`
+name.textContent= `By ${authorName}`
+  
+card.appendChild(img)
+card.appendChild(headline)
+
+return card;
    
 }
+
+console.log(cardMaker('puppers.jpg' , 'PUPPER S. DOGGO'));
+
+
+function createArticles(img , headline) {
+
+
+ const data = axios.get(`https://lambda-times-backend.herokuapp.com/articles/`);
+
+
+ data.then (function(response){
+    console.log(response);
+
+const articleCard = response.data;
+
+articleCard.forEach(authorPhoto =>{
+    const card = cardMaker({img , headline})
+    everPoint.appendChild(card)
+   })
+ })
+
+ .catch (function (error ){
+    debugger
+    console.log('something went wrong, hopefully the error tells us what', error)
+  })
+}
+
+

@@ -31,6 +31,8 @@ thePromise.forEach(function(topicTab){
  tabForAll.textContent = javascript;
  tabsNow .appendChild('div')
 
+ return tabsForAll
+
  });
 
  const topics = document.querySelector('.topics');
