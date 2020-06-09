@@ -7,42 +7,62 @@
 //
 //  Each tab should look like this:
 //    <div class="tab">topic here</div>
-      
+
 //  <div class="tab">javascript</div>
 //  <div class="tab">bootstrap</div>
 //  <div class="tab">technology</div>
 //  <div class="tab">jquery</div>
 //  <div class="tab">node.js</div>
 
- function getTabs (topic) {
+const topics = document.querySelector('.topics')
 
- const thePromise = axios.get('https://lambda-times-backend.herokuapp.com/topics')
 
-thePromise.then(function (response) {
+  axios.get('https://lambda-times-backend.herokuapp.com/topics')
+
+ .then( (response) => {
+   const tabsNow = response.data.topics;
+
+   tabsNow.forEach(function (topicTab) {
+          const tabForAll = document.createElement('div');
+
+          tabForAll.classList.add('tab')
+    
+          tabForAll.textContent = topicTab ;
+        
+         topics.appendChild(tabForAll)
+         console.log(topics)
+        });
+
     console.log('the response from the API, organized for us by axios', response);
+  })
+
+.catch((error) => {
+
+  console.log('messsage' , error
+  )
+})
+
+
    
 
+//     thePromise.forEach(function (topicTab) {
+//       const tabForAll = document.createElement('div');
 
-const tabsNow = response.data.message;
+//       tabForAll.textContent = javascript;
+//       tabsNow.appendChild('div')
 
-thePromise.forEach(function(topicTab){
- const tabForAll = document.createElement('div');
+//       return tabsForAll
 
- tabForAll.textContent = javascript;
- tabsNow .appendChild('div')
+//     });
 
- return tabsForAll
-
- });
-
- const topics = document.querySelector('.topics');
- topics.appendChild(tabsNow);
+//     const topics = document.querySelector('.topics');
+//     topics.appendChild(tabsNow);
 
 
- })
+//   })
 
-  .catch(function (error) {
-    console.log(error);
-  });
+//     .catch(function (error) {
+//       console.log(error);
+//     });
 
- }
+// }

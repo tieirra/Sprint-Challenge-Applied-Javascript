@@ -18,13 +18,14 @@ function header(headerDataObj) {
     const headerTemp = document.createElement('span')
 
 
-    headerDate.appendChild(headerDate)
-    headerTitle.appendChild(headerTitle)
-    headerTemp.appendChild(headerTemp)
+    header.appendChild(headerDate)
+    header.appendChild(headerTitle)
+    header.appendChild(headerTemp)
 
 
     header.classList.add('header')
-   
+    headerTemp.classList.add('temp')
+    headerDate.classList.add('date')
 
 
 
@@ -40,3 +41,6 @@ return header
 
   
 }
+const headerContainer = document.querySelector('header-container')
+
+headerContainer.appendChild(header({date : '06/09/2020', title: 'Lambda  Times', tempature: '70'}))

@@ -21,22 +21,10 @@
 // Use your function to create a card for each of the articles and add the card to the DOM.
 
 
-// <div class="card">
-//   <div class="headline">{Headline of article}</div>
-//   <div class="author">
-//     <div class="img-container">
-//   
-//<img src={url of authors image} />
-//     </div>
-//     <span>By {author's name}</span>
-//   </div>
-// </div>
-
-function cardMaker(attributes){
-
-    const { authorPhoto , authorName} = attributes
 
 
+
+   function card (cardDataObj) {
     const card = document.createElement('div')
     const headline = document.createElement('div')
     const author= document.createElement('div')
@@ -44,28 +32,28 @@ function cardMaker(attributes){
     const img = document.createElement('img')
     const name = document.createElement('span')
     
+    card.appendChild(img)
+    card.appendChild(headline)
 
-   card.classList.add('card')
-   headline.classList.add('headline')
-   author.classList.add('author')
-   imgContainer.classList.add('img-container')
-  
-img.src = `${authorPhoto}`
-name.textContent= `By ${authorName}`
-  
-card.appendChild(img)
-card.appendChild(headline)
+   card.classList.add(card)
+   headline.classList.add(headline)
+   author.classList.add(author)
+   imgContainer.classList.add(img-container)
 
-return card;
-   
+  
+img.src = cardDataObj.authorPhoto
+name.textContent=cardDataObj.authorName
+  
+
+
+return card
+  
+
 }
 
-console.log(cardMaker('puppers.jpg' , 'PUPPER S. DOGGO'));
 
 
-function createArticles(img , headline) {
-
-
+const card = document.que
  const data = axios.get(`https://lambda-times-backend.herokuapp.com/articles/`);
 
 
@@ -84,6 +72,6 @@ articleCard.forEach(authorPhoto =>{
     debugger
     console.log('something went wrong, hopefully the error tells us what', error)
   })
-}
+
 
 
