@@ -14,7 +14,7 @@
 //  <div class="tab">jquery</div>
 //  <div class="tab">node.js</div>
 
-const topics = document.querySelector('.topics')
+const topics = document.querySelector(".topics")
 
 
   axios.get('https://lambda-times-backend.herokuapp.com/topics')
