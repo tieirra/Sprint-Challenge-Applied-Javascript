@@ -41,6 +41,6 @@ return header
 
   
 }
-const headerContainer = document.querySelector('header-container')
+const headerContainer = document.querySelector(".header-container")
 
 headerContainer.appendChild(header({date : '06/09/2020', title: 'Lambda  Times', tempature: '70'}))
