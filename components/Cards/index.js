@@ -51,7 +51,7 @@ function Card(cardDataObj) {
 
 }
 
-const cardsContainer = document.querySelector(".cards-container")
+const cardsContainer = document.querySelector(".cards-container");
 
 axios.get('https://lambda-times-backend.herokuapp.com/articles/')
 
@@ -59,7 +59,7 @@ axios.get('https://lambda-times-backend.herokuapp.com/articles/')
       console.log(response);
       const articletab = response.data.cardsContainer;
 
-      articletab.forEach(tab => {
+      articletab.forEach((tab) => {
          const cardForArticles = document.createElement('div');
 
          // <div class="card">
@@ -74,7 +74,7 @@ axios.get('https://lambda-times-backend.herokuapp.com/articles/')
          // </div>
          cardForArticles.classList.add('card')
 
-         cardForArticles.textContent.add('headline')
+         cardForArticles.textContent = (tab)
          articles.appendChild(cardForArticles)
          console.log(articles)
       })
