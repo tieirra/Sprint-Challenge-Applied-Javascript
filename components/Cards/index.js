@@ -23,66 +23,45 @@
 
 
 
+const cardContainer = document.querySelector("div.cards-container");
 
-function Card(cardDataObj) {
-   const card = document.createElement('div')
-   const headline = document.createElement('div')
-   const author = document.createElement('div')
-   const imgContainer = document.createElement('div')
-   const img = document.createElement('img')
-   const name = document.createElement('span')
+axios
+  .get("https://lambda-times-backend.herokuapp.com/articles")
+  .then((response) => {
+    let articleCard = response.data.articles;
+    console.log(articleCard);
+    Object.entries(articleCard).forEach((articleloop) => {
+      console.log(articleloop[1]);
+      articleloop[1].forEach((articles) =>
+        cardContainer.appendChild(articleMaker(articles))
+      );
+    });
+  })
 
-   card.appendChild(img)
-   card.appendChild(headline)
+  .catch((err) => {
+   console.log(err);
+ });
 
-   card.classList.add(card)
-   headline.classList.add(headline)
-   author.classList.add(author)
-   imgContainer.classList.add(img - container)
+function articleMaker(article) {
+ const card = document.createElement("div");
+ const headLine = document.createElement("div");
+ const author = document.createElement("div");
+ const imgContainer = document.createElement("div");
+ const image = document.createElement("img");
+ const authorName = document.createElement("span");
 
+ card.classList.add("card");
+ headLine.classList.add("headline");
+ author.classList.add("author");
+ imgContainer.classList.add("img-container");
 
-   img.src = cardDataObj.authorPhoto
-   name.textContent = cardDataObj.authorName
+ card.append(headLine, author);
+ author.append(imgContainer, authorName);
+ imgContainer.appendChild(image);
 
+ headLine.textContent = article.headline;
+ authorName.textContent = article.authorName;
+ image.src = article.authorPhoto;
 
-
-   return card
-
-
+ return card;
 }
-
-const cardsContainer = document.querySelector(".cards-container");
-
-axios.get('https://lambda-times-backend.herokuapp.com/articles/')
-
-   .then( (response) => {
-      console.log(response);
-      const articletab = response.data.cardsContainer;
-
-      articletab.forEach((tab) => {
-         const cardForArticles = document.createElement('div');
-
-         // <div class="card">
-         //   <div class="headline">{Headline of article}</div>
-         //   <div class="author">
-         //     <div class="img-container">
-         //   
-         //   <img src={url of authors image} />
-         //     </div>
-         //     <span>By {author's name}</span>
-         //   </div>
-         // </div>
-         cardForArticles.classList.add('card')
-
-         cardForArticles.textContent = (tab)
-         articles.appendChild(cardForArticles)
-         console.log(articles)
-      })
-   })
-   .catch(function (error) {
-
-      console.log( error)
-   })
-
-
-
